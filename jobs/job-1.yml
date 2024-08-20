@@ -36,7 +36,4 @@ spec:
             - image: nginx
               imagePullPolicy: IfNotPresent
               name: nginx
-              resources:
-                requests:
-                  cpu: "1"
           restartPolicy: OnFailure
