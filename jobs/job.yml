@@ -36,7 +36,7 @@ spec:
             - name: demo-ctr
               image: busybox
               imagePullPolicy: IfNotPresent
-              resources:
-                requests:
-                  cpu: "1"
-          restartPolicy: OnFailure
+  #           resources:
+  #             requests:
+  #               cpu: "1"
+  #       restartPolicy: OnFailure
