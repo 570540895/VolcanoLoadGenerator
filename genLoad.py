@@ -99,7 +99,7 @@ def run():
     try:
         df = pd.read_csv(csv_file)
         assert df.shape[0] >= 2
-        df = df.sort_values('startTime', ascending=True)
+        df = df.sort_values('createDate', ascending=True)
         df.to_csv(sorted_csv_file, index=False)
     except Exception as e:
         log.error(e)
@@ -112,7 +112,7 @@ def run():
     global pre_row
 
     scheduler = sched.scheduler(time.time, time.sleep)
-    csv_start_time = int(time.mktime(time.strptime(str(df['time'][0]), '%Y%m%d')))
+    csv_start_time = df['createDate'][0]
 
     # 实际任务开始执行时间
     exec_start_time = int(time.time()) + start_interval
