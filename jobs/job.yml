@@ -7,7 +7,6 @@ spec:
   schedulerName: volcano
   policies:
     - event: PodEvicted
-      action: RestartJob
   plugins:
     ssh: []
     env: []
