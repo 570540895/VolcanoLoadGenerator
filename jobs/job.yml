@@ -33,6 +33,7 @@ spec:
         metadata:
           name: demo-pod
         spec:
+          ttlSecondsAfterFinished: 0
           containers:
             - name: demo-ctr
               image: busybox
