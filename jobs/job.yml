@@ -25,10 +25,10 @@ spec:
   #      resources:
   #        requests:
   #          storage: 1Gi
+  ttlSecondsAfterFinished: 0
   tasks:
     - replicas: 3
       name: demo
-      ttlSecondsAfterFinished: 0
       template:
         metadata:
           name: demo-pod
