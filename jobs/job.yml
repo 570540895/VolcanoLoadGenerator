@@ -28,6 +28,7 @@ spec:
   tasks:
     - replicas: 3
       name: demo
+      ttlSecondAfterFinished: 0
       template:
         metadata:
           name: demo-pod
@@ -35,6 +36,7 @@ spec:
           containers:
             - name: demo-ctr
               image: busybox
+              command: ["/bin/bash", "-c", "sleep 10"]
               imagePullPolicy: IfNotPresent
   #           resources:
   #             requests:

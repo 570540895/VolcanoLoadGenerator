@@ -31,7 +31,7 @@ sorted_csv_file = r'data/sorted_test.csv'
 
 cfg_template_path = r'templates/'
 
-config_path = r'configs/'
+job_path = r'jobs/'
 deployment_path = r'deployments/'
 
 
@@ -42,7 +42,7 @@ def is_replicas(row1, row2):
 
 
 def create_yml_files(test_index, replicas, cpu_count, memory_count, is_running, timestamp_duration):
-    config_file_name = '{}config-{}.yml'.format(config_path, str(test_index))
+    config_file_name = '{}config-{}.yml'.format(job_path, str(test_index))
     test_name = 'test-{}'.format(str(test_index))
     pod_group_name = 'test-pod-{}'.format(str(test_index))
     deployment_group_name = 'test-deployment-{}'.format(str(test_index))
@@ -79,19 +79,8 @@ def exec_test(test_index, row_index, time_interval):
 
 # execute cluster loader task
 def exec_cluster_loader2(test_index):
-    config_file_name = '{}config-{}.yml'.format(config_path, str(test_index))
-    cluster_loader2_path = r'../clusterloader'
-    kubemark_config_path = r'../config'
-    enable_exec_service = r'false'
-    enable_prometheus_server = r'false'
-    tear_down_prometheus_server = r'false'
-    report_dir = r'../reports'
-    output_file_path = r'output.txt'
-    cmd = '{} --testconfig={} --provider=kubemark --provider-configs=ROOT_KUBECONFIG={} ' \
-          '--kubeconfig={} --v=2 --enable-exec-service={} --enable-prometheus-server={} ' \
-          '--tear-down-prometheus-server={}  --report-dir="{}" --nodes=10 >{} 2>&1 &'.format(
-            cluster_loader2_path, config_file_name, kubemark_config_path, kubemark_config_path,
-            enable_exec_service, enable_prometheus_server, tear_down_prometheus_server, report_dir, output_file_path)
+    job_file_name = '{}job-{}.yml'.format(job_path, str(test_index))
+    cmd = 'kubectl apply -f {}'.format(job_file_name)
     os.system(cmd)
 
 
