@@ -28,7 +28,7 @@ spec:
   tasks:
     - replicas: 3
       name: demo
-      ttlSecondAfterFinished: 0
+      ttlSecondsAfterFinished: 0
       template:
         metadata:
           name: demo-pod
