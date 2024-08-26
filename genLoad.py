@@ -34,12 +34,12 @@ cfg_template_path = r'templates/'
 job_path = r'jobs/'
 deployment_path = r'deployments/'
 
-
+"""
 def is_replicas(row1, row2):
     return row1['jobId'] == row2['jobId'] \
            and row1['startTime'] == row2['startTime'] \
            and row1['endTime'] == row2['endTime']
-
+"""
 
 def create_yml_files(test_index, replicas, cpu_count, memory_count, is_running, timestamp_duration):
     config_file_name = '{}config-{}.yml'.format(job_path, str(test_index))
