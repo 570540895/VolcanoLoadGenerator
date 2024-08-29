@@ -5,8 +5,6 @@ metadata:
 spec:
   minAvailable: 1
   schedulerName: volcano
-  policies:
-  - event: PodEvicted
   plugins:
     ssh: []
     env: []
@@ -28,7 +26,8 @@ spec:
         - name: ctr-9217
           image: busybox
           command:
-          - /bin/bash
+          - /bin/sh
           - -c
           - sleep 58
           imagePullPolicy: IfNotPresent
+        restartPolicy: OnFailure

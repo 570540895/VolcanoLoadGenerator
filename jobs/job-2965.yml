@@ -5,8 +5,6 @@ metadata:
 spec:
   minAvailable: 5
   schedulerName: volcano
-  policies:
-  - event: PodEvicted
   plugins:
     ssh: []
     env: []
@@ -15,7 +13,7 @@ spec:
   queue: default
   ttlSecondsAfterFinished: 0
   tasks:
-  - replicas: 1
+  - replicas: 5
     name: task-2965
     policies:
     - event: TaskCompleted
@@ -28,7 +26,8 @@ spec:
         - name: ctr-2965
           image: busybox
           command:
-          - /bin/bash
+          - /bin/sh
           - -c
           - sleep 1514
           imagePullPolicy: IfNotPresent
+        restartPolicy: OnFailure

@@ -46,11 +46,11 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
     job_file_name = '{}job-{}.yml'.format(job_path, str(test_index))
     job_name = 'vcjob-{}'.format(str(test_index))
     min_available = str(pod_num)
-    replicas = str(1)
+    replicas = min_available
     task_name = 'task-{}'.format(str(test_index))
     pod_name = 'pod-{}'.format(str(test_index))
     ctr_name = 'ctr-{}'.format(str(test_index))
-    command = '["/bin/bash", "-c", "sleep {}"]'.format(str(duration))
+    command = '["/bin/sh", "-c", "sleep {}"]'.format(str(duration))
 
     cpu = '{}m'.format(str(cpu_num * 1000))
     mem = '{}Mi'.format(str(1024 * memory))

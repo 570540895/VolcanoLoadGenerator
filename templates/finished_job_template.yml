@@ -5,8 +5,6 @@ metadata:
 spec:
   minAvailable: ${MinAvailable}
   schedulerName: volcano
-  policies:
-    - event: PodEvicted
   plugins:
     ssh: []
     env: []
@@ -43,4 +41,5 @@ spec:
   #           resources:
   #             requests:
   #               cpu: "1"
-  #       restartPolicy: OnFailure
+          restartPolicy: OnFailure
+  #       completions:
