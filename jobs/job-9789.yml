@@ -1,0 +1,34 @@
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: vcjob-9789
+spec:
+  minAvailable: 1
+  schedulerName: volcano
+  policies:
+  - event: PodEvicted
+  plugins:
+    ssh: []
+    env: []
+    svc: []
+  maxRetry: 5
+  queue: default
+  ttlSecondsAfterFinished: 0
+  tasks:
+  - replicas: 1
+    name: task-9789
+    policies:
+    - event: TaskCompleted
+      action: CompleteJob
+    template:
+      metadata:
+        name: pod-9789
+      spec:
+        containers:
+        - name: ctr-9789
+          image: busybox
+          command:
+          - /bin/bash
+          - -c
+          - sleep 61
+          imagePullPolicy: IfNotPresent
