@@ -3,41 +3,40 @@ kind: Job
 metadata:
   name: test-job
 spec:
-  minAvailable: 3
+  minAvailable: 1
   schedulerName: volcano
-  policies:
-    - event: PodEvicted
   plugins:
     ssh: []
     env: []
     svc: []
   maxRetry: 5
   queue: default
-  # Comment out the following section to enable volumes for job input/output.
-  #volumes:
-  #  - mountPath: "/myinput"
-  #  - mountPath: "/myoutput"
-  #    volumeClaimName: "testvolumeclaimname"
-  #    volumeClaim:
-  #      accessModes: [ "ReadWriteOnce" ]
-  #      storageClassName: "my-storage-class"
-  #      resources:
-  #        requests:
-  #          storage: 1Gi
   ttlSecondsAfterFinished: 0
   tasks:
-    - replicas: 3
-      name: demo
-      template:
-        metadata:
-          name: demo-pod
-        spec:
-          containers:
-            - name: demo-ctr
-              image: busybox
-              command: ["/bin/bash", "-c", "sleep 10"]
-              imagePullPolicy: IfNotPresent
-  #           resources:
-  #             requests:
-  #               cpu: "1"
-  #       restartPolicy: OnFailure
+  - replicas: 1
+    name: demo
+    policies:
+    - event: TaskCompleted
+      action: CompleteJob
+    template:
+      metadata:
+        name: demo-pod
+      spec:
+        containers:
+        - name: demo-ctr
+          image: busybox
+          command:
+          - /bin/sh
+          - -c
+          - sleep 10
+          imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: "1"
+              memory: "128Mi"
+              zhejianglab.com/gpu: 1
+            limits:
+              cpu: "1"
+              memory: "128Mi"
+              zhejianglab.com/gpu: 1
+        restartPolicy: OnFailure
