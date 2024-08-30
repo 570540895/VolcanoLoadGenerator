@@ -54,7 +54,7 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
 
     cpu = '{}m'.format(str(cpu_num * 1000))
     mem = '{}Mi'.format(str(1024 * memory))
-    gpu = '{}'.format(gpu_num)
+    gpu = '{}'.format(str(gpu_num))
 
     job_template_file = '{}{}'.format(job_template_path,
                                       'running_job_template.yml' if is_running else 'finished_job_template.yml')
@@ -67,7 +67,11 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
                                               'TaskName': task_name,
                                               'PodName': pod_name,
                                               'CtrName': ctr_name,
-                                              'Command': command})
+                                              'Command': command,
+                                              'Cpu': cpu,
+                                              'Memory': mem,
+                                              'Gpu': gpu
+                                              })
     job_yaml_data = yaml.safe_load(job_s)
     with open(job_file_name, 'w') as fp:
         yaml.dump(job_yaml_data, fp, sort_keys=False)

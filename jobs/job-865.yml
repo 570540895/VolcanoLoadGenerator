@@ -30,4 +30,13 @@ spec:
           - -c
           - sleep 1606
           imagePullPolicy: IfNotPresent
+          resources:
+            requests:
+              cpu: 16000m
+              memory: 262144Mi
+              zhejianglab.com/gpu: 1
+            limits:
+              cpu: 16000m
+              memory: 262144Mi
+              zhejianglab.com/gpu: 1
         restartPolicy: OnFailure

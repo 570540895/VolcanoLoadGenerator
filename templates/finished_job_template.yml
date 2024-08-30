@@ -38,8 +38,13 @@ spec:
               image: busybox
               command: ${Command}
               imagePullPolicy: IfNotPresent
-  #           resources:
-  #             requests:
-  #               cpu: "1"
+              resources:
+                requests:
+                  cpu: ${Cpu}
+                  memory: ${Memory}
+                  zhejianglab.com/gpu: ${Gpu}
+                limits:
+                  cpu: ${Cpu}
+                  memory: ${Memory}
+                  zhejianglab.com/gpu: ${Gpu}
           restartPolicy: OnFailure
-  #       completions:
