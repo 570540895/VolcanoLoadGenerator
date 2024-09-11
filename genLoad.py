@@ -10,7 +10,7 @@ from string import Template
 is_debug = True if sys.gettrace() else False
 
 # 时间压缩比
-time_compress = 180
+time_compress = 1080
 
 # 构造负载倍数
 load_times = 1
@@ -120,7 +120,7 @@ def run():
         is_running = (row['status'] == 'running')
 
         time_interval = int((row['createDate'] - csv_start_time) / time_compress)
-        if time_interval > 3600:
+        if time_interval > 600:
             break
         for i in range(load_times):
             create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is_running)
