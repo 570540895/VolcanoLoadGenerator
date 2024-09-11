@@ -3,14 +3,8 @@ kind: Job
 metadata:
   name: vcjob-4166
 spec:
-  minAvailable: 1
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
+  minAvailable: 1
   ttlSecondsAfterFinished: 0
   tasks:
   - replicas: 1
@@ -22,21 +16,21 @@ spec:
       metadata:
         name: pod-4166
       spec:
+        activeDeadlineSeconds: 1
         containers:
-        - name: ctr-4166
-          image: busybox
+        - image: busybox
           command:
           - /bin/sh
           - -c
-          - sleep 226
-          imagePullPolicy: IfNotPresent
+          - sleep 100000
+          name: ctr-4166
           resources:
             requests:
-              cpu: 32000m
-              memory: 327680Mi
+              cpu: 32m
+              memory: 320Mi
               zhejianglab.com/gpu: 8
             limits:
-              cpu: 32000m
-              memory: 327680Mi
+              cpu: 32m
+              memory: 320Mi
               zhejianglab.com/gpu: 8
-        restartPolicy: OnFailure
+        restartPolicy: Never

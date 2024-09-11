@@ -3,14 +3,8 @@ kind: Job
 metadata:
   name: vcjob-271
 spec:
-  minAvailable: 16
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
+  minAvailable: 16
   ttlSecondsAfterFinished: 0
   tasks:
   - replicas: 16
@@ -22,21 +16,21 @@ spec:
       metadata:
         name: pod-271
       spec:
+        activeDeadlineSeconds: 394
         containers:
-        - name: ctr-271
-          image: busybox
+        - image: busybox
           command:
           - /bin/sh
           - -c
-          - sleep 70971
-          imagePullPolicy: IfNotPresent
+          - sleep 100000
+          name: ctr-271
           resources:
             requests:
-              cpu: 8000m
-              memory: 32768Mi
+              cpu: 8m
+              memory: 32Mi
               zhejianglab.com/gpu: 1
             limits:
-              cpu: 8000m
-              memory: 32768Mi
+              cpu: 8m
+              memory: 32Mi
               zhejianglab.com/gpu: 1
-        restartPolicy: OnFailure
+        restartPolicy: Never

@@ -3,42 +3,25 @@ kind: Job
 metadata:
   name: ${JobName}
 spec:
-  minAvailable: ${MinAvailable}
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
-  # Comment out the following section to enable volumes for job input/output.
-  #volumes:
-  #  - mountPath: "/myinput"
-  #  - mountPath: "/myoutput"
-  #    volumeClaimName: "testvolumeclaimname"
-  #    volumeClaim:
-  #      accessModes: [ "ReadWriteOnce" ]
-  #      storageClassName: "my-storage-class"
-  #      resources:
-  #        requests:
-  #          storage: 1Gi
+  minAvailable: ${MinAvailable}
   ttlSecondsAfterFinished: 0
   tasks:
-    - replicas: ${Replicas}
-      name: ${TaskName}
-      policies:
-        - event: TaskCompleted
-          action: CompleteJob
-      template:
-        metadata:
-          name: ${PodName}
-        spec:
-          containers:
-            - name: ${CtrName}
-              image: busybox
-              command: ${Command}
-              imagePullPolicy: IfNotPresent
-              resources:
+  - replicas: ${Replicas}
+    name: ${TaskName}
+    policies:
+    - event: TaskCompleted
+      action: CompleteJob
+    template:
+      metadata:
+        name: ${PodName}
+      spec:
+        activeDeadlineSeconds: ${Duration}
+        containers:
+        - image: busybox
+          command: ["/bin/sh", "-c", "sleep 100000"]
+          name: ${CtrName}
+          resources:
                 requests:
                   cpu: ${Cpu}
                   memory: ${Memory}
@@ -47,4 +30,4 @@ spec:
                   cpu: ${Cpu}
                   memory: ${Memory}
                   zhejianglab.com/gpu: ${Gpu}
-          restartPolicy: OnFailure
+        restartPolicy: Never

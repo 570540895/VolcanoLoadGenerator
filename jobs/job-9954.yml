@@ -3,14 +3,8 @@ kind: Job
 metadata:
   name: vcjob-9954
 spec:
-  minAvailable: 1
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
+  minAvailable: 1
   ttlSecondsAfterFinished: 0
   tasks:
   - replicas: 1
@@ -22,21 +16,21 @@ spec:
       metadata:
         name: pod-9954
       spec:
+        activeDeadlineSeconds: 0
         containers:
-        - name: ctr-9954
-          image: busybox
+        - image: busybox
           command:
           - /bin/sh
           - -c
-          - sleep 60
-          imagePullPolicy: IfNotPresent
+          - sleep 100000
+          name: ctr-9954
           resources:
             requests:
-              cpu: 64000m
-              memory: 917504Mi
+              cpu: 64m
+              memory: 896Mi
               zhejianglab.com/gpu: 8
             limits:
-              cpu: 64000m
-              memory: 917504Mi
+              cpu: 64m
+              memory: 896Mi
               zhejianglab.com/gpu: 8
-        restartPolicy: OnFailure
+        restartPolicy: Never

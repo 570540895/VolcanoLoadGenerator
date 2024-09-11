@@ -3,14 +3,8 @@ kind: Job
 metadata:
   name: vcjob-6780
 spec:
-  minAvailable: 32
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
+  minAvailable: 32
   ttlSecondsAfterFinished: 0
   tasks:
   - replicas: 32
@@ -22,21 +16,21 @@ spec:
       metadata:
         name: pod-6780
       spec:
+        activeDeadlineSeconds: 5304
         containers:
-        - name: ctr-6780
-          image: busybox
+        - image: busybox
           command:
           - /bin/sh
           - -c
-          - sleep 954885
-          imagePullPolicy: IfNotPresent
+          - sleep 100000
+          name: ctr-6780
           resources:
             requests:
-              cpu: 8000m
-              memory: 114688Mi
+              cpu: 8m
+              memory: 112Mi
               zhejianglab.com/gpu: 1
             limits:
-              cpu: 8000m
-              memory: 114688Mi
+              cpu: 8m
+              memory: 112Mi
               zhejianglab.com/gpu: 1
-        restartPolicy: OnFailure
+        restartPolicy: Never

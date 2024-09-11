@@ -10,7 +10,7 @@ from string import Template
 is_debug = True if sys.gettrace() else False
 
 # 时间压缩比
-time_compress = 1
+time_compress = 180
 
 # 构造负载倍数
 load_times = 1
@@ -50,10 +50,11 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
     task_name = 'task-{}'.format(str(test_index))
     pod_name = 'pod-{}'.format(str(test_index))
     ctr_name = 'ctr-{}'.format(str(test_index))
-    command = '["/bin/sh", "-c", "sleep {}"]'.format(str(duration))
+    duration = str(duration)
 
-    cpu = '{}m'.format(str(cpu_num * 1000))
-    mem = '{}Mi'.format(str(1024 * memory))
+    # cpu缩放1000倍， mem缩放1024倍
+    cpu = '{}m'.format(str(cpu_num))
+    mem = '{}Mi'.format(str(memory))
     gpu = '{}'.format(str(gpu_num))
 
     job_template_file = '{}{}'.format(job_template_path,
@@ -67,7 +68,7 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
                                               'TaskName': task_name,
                                               'PodName': pod_name,
                                               'CtrName': ctr_name,
-                                              'Command': command,
+                                              'Duration': duration,
                                               'Cpu': cpu,
                                               'Memory': mem,
                                               'Gpu': gpu

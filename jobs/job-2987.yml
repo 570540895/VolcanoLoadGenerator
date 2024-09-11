@@ -3,14 +3,8 @@ kind: Job
 metadata:
   name: vcjob-2987
 spec:
-  minAvailable: 64
   schedulerName: volcano
-  plugins:
-    ssh: []
-    env: []
-    svc: []
-  maxRetry: 5
-  queue: default
+  minAvailable: 64
   ttlSecondsAfterFinished: 0
   tasks:
   - replicas: 64
@@ -22,21 +16,21 @@ spec:
       metadata:
         name: pod-2987
       spec:
+        activeDeadlineSeconds: 19
         containers:
-        - name: ctr-2987
-          image: busybox
+        - image: busybox
           command:
           - /bin/sh
           - -c
-          - sleep 3479
-          imagePullPolicy: IfNotPresent
+          - sleep 100000
+          name: ctr-2987
           resources:
             requests:
-              cpu: 64000m
-              memory: 917504Mi
+              cpu: 64m
+              memory: 896Mi
               zhejianglab.com/gpu: 8
             limits:
-              cpu: 64000m
-              memory: 917504Mi
+              cpu: 64m
+              memory: 896Mi
               zhejianglab.com/gpu: 8
-        restartPolicy: OnFailure
+        restartPolicy: Never
