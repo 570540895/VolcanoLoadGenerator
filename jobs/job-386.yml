@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-386
       spec:
-        activeDeadlineSeconds: 0
+        activeDeadlineSeconds: 1
         containers:
         - image: busybox
           command:

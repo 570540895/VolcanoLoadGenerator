@@ -113,13 +113,15 @@ def run():
 
     for _, row in df.iterrows():
         pod_num = row['worker_num']
-        duration = int((row['endTime'] - row['startTime']) / time_compress)
+        duration = max(1, int((row['endTime'] - row['startTime']) / time_compress))
         cpu_num = row['cpu_num']
         memory = row['mem(GB)']
         gpu_num = row['gpu_num']
         is_running = (row['status'] == 'running')
 
         time_interval = int((row['createDate'] - csv_start_time) / time_compress)
+        if time_interval > 3600:
+            break
         for i in range(load_times):
             create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is_running)
             exec_func = exec_test if is_debug else exec_kubectl
