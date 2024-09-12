@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-280
       spec:
-        activeDeadlineSeconds: 72
+        activeDeadlineSeconds: 12
         containers:
         - image: busybox
           command:

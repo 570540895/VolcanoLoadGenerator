@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-883
       spec:
-        activeDeadlineSeconds: 338
+        activeDeadlineSeconds: 56
         containers:
         - image: busybox
           command:

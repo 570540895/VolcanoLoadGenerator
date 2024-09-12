@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-962
       spec:
-        activeDeadlineSeconds: 266
+        activeDeadlineSeconds: 44
         containers:
         - image: busybox
           command:

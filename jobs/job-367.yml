@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-367
       spec:
-        activeDeadlineSeconds: 303
+        activeDeadlineSeconds: 50
         containers:
         - image: busybox
           command:

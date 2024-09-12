@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-1046
       spec:
-        activeDeadlineSeconds: 8
+        activeDeadlineSeconds: 1
         containers:
         - image: busybox
           command:

@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-485
       spec:
-        activeDeadlineSeconds: 29
+        activeDeadlineSeconds: 4
         containers:
         - image: busybox
           command:
