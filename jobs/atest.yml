@@ -1,0 +1,36 @@
+apiVersion: batch.volcano.sh/v1alpha1
+kind: Job
+metadata:
+  name: a-test
+spec:
+  schedulerName: volcano
+  minAvailable: 1
+  ttlSecondsAfterFinished: 0
+  tasks:
+  - replicas: 4
+    name: task-0
+    policies:
+    - event: TaskCompleted
+      action: CompleteJob
+    template:
+      metadata:
+        name: pod-0
+      spec:
+        activeDeadlineSeconds: 30
+        containers:
+        - image: busybox
+          command:
+          - /bin/sh
+          - -c
+          - sleep 100000
+          name: ctr-0
+          resources:
+            requests:
+              cpu: 64m
+              memory: 896Mi
+              zhejianglab.com/gpu: 8
+            limits:
+              cpu: 64m
+              memory: 896Mi
+              zhejianglab.com/gpu: 8
+        restartPolicy: Never
