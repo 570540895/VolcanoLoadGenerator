@@ -19,6 +19,7 @@ spec:
         activeDeadlineSeconds: ${Duration}
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command: ["/bin/sh", "-c", "sleep 100000"]
           name: ${CtrName}
           resources:

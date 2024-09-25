@@ -19,6 +19,7 @@ spec:
         activeDeadlineSeconds: 19
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c
