@@ -16,9 +16,10 @@ spec:
       metadata:
         name: pod-2182
       spec:
-        activeDeadlineSeconds: 46
+        activeDeadlineSeconds: 280
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c

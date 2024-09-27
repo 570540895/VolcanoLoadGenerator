@@ -16,9 +16,10 @@ spec:
       metadata:
         name: pod-5470
       spec:
-        activeDeadlineSeconds: 263
+        activeDeadlineSeconds: 1583
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c

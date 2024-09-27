@@ -16,9 +16,10 @@ spec:
       metadata:
         name: pod-4904
       spec:
-        activeDeadlineSeconds: 14
+        activeDeadlineSeconds: 87
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c

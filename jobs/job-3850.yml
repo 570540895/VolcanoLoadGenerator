@@ -16,9 +16,10 @@ spec:
       metadata:
         name: pod-3850
       spec:
-        activeDeadlineSeconds: 9
+        activeDeadlineSeconds: 58
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c
