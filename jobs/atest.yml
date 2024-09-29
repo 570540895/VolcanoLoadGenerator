@@ -6,8 +6,9 @@ spec:
   schedulerName: volcano
   minAvailable: 1
   ttlSecondsAfterFinished: 0
+  activeDeadlineSeconds: 30
   tasks:
-  - replicas: 4
+  - replicas: 1
     name: task-0
     policies:
     - event: TaskCompleted
@@ -19,6 +20,7 @@ spec:
         activeDeadlineSeconds: 60
         containers:
         - image: busybox
+          imagePullPolicy: IfNotPresent
           command:
           - /bin/sh
           - -c

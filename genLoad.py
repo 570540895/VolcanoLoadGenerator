@@ -17,8 +17,8 @@ load_times = 1
 # 构造负载延迟(秒)
 load_latency = 3
 
-# 预留时间用于生成yml文件
-start_interval = 30
+# 预留时间用于生成yml文件和设置延时任务
+start_interval = 60
 # 任务启动延迟阈值
 time_interval_threshold = 0
 
