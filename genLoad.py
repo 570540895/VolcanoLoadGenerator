@@ -54,7 +54,7 @@ def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is
 
     # cpu缩放1000倍， mem缩放1024倍
     cpu = '{}m'.format(str(cpu_num))
-    mem = '{}Mi'.format(str(memory))
+    mem = '{}Ki'.format(str(memory))
     gpu = '{}'.format(str(gpu_num))
 
     job_template_file = '{}{}'.format(job_template_path,

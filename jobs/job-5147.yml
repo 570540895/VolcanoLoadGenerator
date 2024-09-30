@@ -28,10 +28,10 @@ spec:
           resources:
             requests:
               cpu: 16m
-              memory: 256Mi
+              memory: 256Ki
               zhejianglab.com/gpu: 1
             limits:
               cpu: 16m
-              memory: 256Mi
+              memory: 256Ki
               zhejianglab.com/gpu: 1
         restartPolicy: Never
