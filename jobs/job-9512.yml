@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-9512
       spec:
-        activeDeadlineSeconds: 1609
+        activeDeadlineSeconds: 804
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

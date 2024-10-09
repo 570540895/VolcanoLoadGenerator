@@ -10,7 +10,7 @@ from string import Template
 is_debug = True if sys.gettrace() else False
 
 # 时间压缩比
-time_compress = 30
+time_compress = 60
 
 # 构造负载倍数
 load_times = 1
@@ -33,13 +33,6 @@ job_template_path = r'templates/'
 
 job_path = r'jobs/'
 deployment_path = r'deployments/'
-
-"""
-def is_replicas(row1, row2):
-    return row1['jobId'] == row2['jobId'] \
-           and row1['startTime'] == row2['startTime'] \
-           and row1['endTime'] == row2['endTime']
-"""
 
 
 def create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is_running):

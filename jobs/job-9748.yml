@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-9748
       spec:
-        activeDeadlineSeconds: 1244
+        activeDeadlineSeconds: 622
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

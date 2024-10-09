@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-1685
       spec:
-        activeDeadlineSeconds: 804
+        activeDeadlineSeconds: 402
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

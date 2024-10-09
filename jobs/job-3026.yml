@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-3026
       spec:
-        activeDeadlineSeconds: 402
+        activeDeadlineSeconds: 201
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

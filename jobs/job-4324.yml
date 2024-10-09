@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-4324
       spec:
-        activeDeadlineSeconds: 813
+        activeDeadlineSeconds: 406
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

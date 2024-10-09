@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-1160
       spec:
-        activeDeadlineSeconds: 599
+        activeDeadlineSeconds: 299
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent

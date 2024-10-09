@@ -16,7 +16,7 @@ spec:
       metadata:
         name: pod-8714
       spec:
-        activeDeadlineSeconds: 88
+        activeDeadlineSeconds: 44
         containers:
         - image: busybox
           imagePullPolicy: IfNotPresent
