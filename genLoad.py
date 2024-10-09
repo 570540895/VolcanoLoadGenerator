@@ -116,7 +116,8 @@ def run():
         # if time_interval > 600:
             # break
         for i in range(load_times):
-            create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is_running)
+            if is_debug:
+                create_yml_files(test_index, pod_num, duration, cpu_num, memory, gpu_num, is_running)
             exec_func = exec_test if is_debug else exec_kubectl
             exec_func_params = (test_index, row_index, time_interval,) if is_debug else (test_index,)
             if time_interval >= time_interval_threshold:
